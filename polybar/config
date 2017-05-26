@@ -52,8 +52,8 @@ font-1 = unifont:fontformat=truetype:size=6:heavy;-2
 font-2 = siji:pixelsize=10
 font-3 = FontAwesome:pixelsize=9;0
 
-modules-left = i3 volume
-modules-center = date
+modules-left = i3 volume redshift 
+modules-center = date weather
 modules-right = mpd wlan updates memory cpu temperature battery 
 
 ;tray-position = right
@@ -121,6 +121,12 @@ label-urgent-padding = 2
 label-empty = %index%
 label-empty-foreground = ${colors.foreground-alt}
 label-empty-padding = 2
+
+[module/redshift]
+type = custom/scriptreds
+interval = 5
+
+exec = ~/.config/polybar/redshift.sh
 
 [module/i3]
 type = internal/i3
@@ -233,6 +239,17 @@ bar-empty-foreground = ${colors.foreground-alt}
 inherit = module/xbacklight
 type = internal/backlight
 card = intel_backlight
+
+[module/weather]
+type = custom/script
+interval = 60
+
+
+format = <label>
+format-prefix = " ⁣   "
+format-suffix = "  "
+format-prefix-foreground = ${colors.foreground-alt}
+exec = python ~/.config/polybar/weather.py
 
 [module/cpu]
 type = internal/cpu
